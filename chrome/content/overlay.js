@@ -842,16 +842,20 @@ fr.hardcoding.scrollupfolder = {
 		/*-- end of block --*/
 		var resolvedUrl = null;
 		var indexAnchor = baseUrl.indexOf('#');
-		// Try to espace anchor
+		// Try to escape anchor
 		if (indexAnchor != -1 && fr.hardcoding.scrollupfolder.prefs.parseAnchor.value && ++indexAnchor != baseUrl.length) {
 			return baseUrl.substring(0, indexAnchor);
 		}
 		var indexGetParam = baseUrl.indexOf('?');
 		// Try to escape GET variables
 		if (indexGetParam != -1 && fr.hardcoding.scrollupfolder.prefs.parseGetVars.value) {
-			// TODO Improvement for GET variables
-//			alert("escape GET");
-			return baseUrl.substring(0, indexGetParam);
+			while(baseUrl.match(/.+[=&]/g)){
+				baseUrl = baseUrl.slice(0,-1);
+				if(baseUrl.match(/.+[=&]/g))
+					return baseUrl.match(/.+[=&]/g)[0];
+				else
+					return baseUrl.match(/.+\?/g)[0];
+			}
 		} else
 		// Try to go one directory up
 		if (baseUrl.charAt(baseUrl.length-1) == '/') {
