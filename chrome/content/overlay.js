@@ -843,7 +843,7 @@ fr.hardcoding.scrollupfolder = {
 		var resolvedUrl = null;
 		var indexAnchor = baseUrl.indexOf('#');
 		// Try to espace anchor
-		if (indexAnchor != -1 && fr.hardcoding.scrollupfolder.prefs.parseAnchor.value) {
+		if (indexAnchor != -1 && fr.hardcoding.scrollupfolder.prefs.parseAnchor.value && ++indexAnchor != baseUrl.length) {
 			return baseUrl.substring(0, indexAnchor);
 		}
 		var indexGetParam = baseUrl.indexOf('?');
