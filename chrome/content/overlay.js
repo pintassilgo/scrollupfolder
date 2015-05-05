@@ -192,6 +192,8 @@ fr.hardcoding.scrollupfolder = {
 			var urlbar = document.getElementById('urlbar');
 			// Display chosen path
 			urlbar.value = currentTab.SUFPaths[currentTab.SUFPointer];
+			// On scroll, focus urlbar with cursor after url
+			urlbar.focus();
 			// Set the cursor at the end of path
 			urlbar.setSelectionRange(url.length, url.length);
 		},
